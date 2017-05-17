@@ -1,0 +1,6 @@
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\bin\Debug\Parser_Test.exe.config
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\bin\Debug\Parser_Test.exe
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\bin\Debug\Parser_Test.pdb
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\obj\Debug\Parser_Test.csprojResolveAssemblyReference.cache
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\obj\Debug\Parser_Test.exe
+d:\users\mitchell\documents\visual studio 2015\Projects\Parser_Test\Parser_Test\obj\Debug\Parser_Test.pdb

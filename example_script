@@ -1,0 +1,9 @@
+// testing comments
+#Test#
+<variable>	<arrested>
+|Player|	|Guard|
+~
+{1}
+Player	"Hello"	[3]
+Guard	"What's all this then."	[4]
+~
