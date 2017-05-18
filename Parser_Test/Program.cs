@@ -348,7 +348,7 @@ namespace Parser_Test
                 //loop through the actors in the tree
                 for (int i = 0; i < tbt.actors.Count(); i++)
                 {
-                    scribe.Write("#" + tbt.actors[i] + "#");
+                    scribe.Write("|" + tbt.actors[i] + "|");
                     scribe.Write('\t');
                 }
                 //new line
@@ -363,9 +363,9 @@ namespace Parser_Test
                     scribe.WriteLine("{" + tbt.nodes[i].sceneNum + "}");
                     scribe.Write(tbt.nodes[i].owner);
                     scribe.Write('\t');
-                    scribe.Write(tbt.nodes[i].line);
+                    scribe.Write('"' + tbt.nodes[i].line + '"');
                     scribe.Write('\t');
-                    scribe.Write(tbt.nodes[i].jumpNum);
+                    scribe.Write("[" + tbt.nodes[i].jumpNum + "]");
                     scribe.Write('\n');
                     //loop to handle reactions
                     //write owner for list of reactions
@@ -380,7 +380,7 @@ namespace Parser_Test
                         }
                         //write tab
                         scribe.Write('\t');
-                        scribe.Write(tbt.nodes[i].reactions[j].line);
+                        scribe.Write('"' +tbt.nodes[i].reactions[j].line +'"');
                         scribe.Write('\t');
                         scribe.Write("[" + tbt.nodes[i].reactions[j].jumpNum + "]");
                         scribe.Write('\n');
