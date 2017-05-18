@@ -114,7 +114,8 @@ namespace Parser_Test
         static void Main(string[] args)
         {
             string tmp = File.ReadAllText("../../script.txt");
-            parse(tmp);
+            //parse(tmp);
+            transcribe(parse(tmp), "test", "../../");
         }
 
         //create a dialogue tree based on  text script
@@ -335,22 +336,23 @@ namespace Parser_Test
             {
                 scribe.WriteLine("#" + tbt.title + "#");
 
+                //to be added at later date when gates and stuff implemented
                 //loop through variables in tree
-                for (int i = 0; i < tbt.flags.Count(); i++)
-                {
-                    scribe.Write("<" + tbt.flags[i] + ">");
-                    scribe.Write("\t");
-                }
+                //for (int i = 0; i < tbt.flags.Count(); i++)
+                //{
+                //    scribe.Write("<" + tbt.flags[i] + ">");
+                //    scribe.Write("\t");
+                //}
                 //new line
-                scribe.Write("\n");
+                scribe.Write('\n');
                 //loop through the actors in the tree
                 for (int i = 0; i < tbt.actors.Count(); i++)
                 {
                     scribe.Write("#" + tbt.actors[i] + "#");
-                    scribe.Write("\t");
+                    scribe.Write('\t');
                 }
                 //new line
-                scribe.Write("\n");
+                scribe.Write('\n');
 
                 //loop for each node
                 for(int i = 0; i < tbt.nodes.Count(); i++)
@@ -360,21 +362,28 @@ namespace Parser_Test
                     //transcribe node number
                     scribe.WriteLine("{" + tbt.nodes[i].sceneNum + "}");
                     scribe.Write(tbt.nodes[i].owner);
-                    scribe.Write("\t");
+                    scribe.Write('\t');
                     scribe.Write(tbt.nodes[i].line);
-                    scribe.Write("\t");
+                    scribe.Write('\t');
                     scribe.Write(tbt.nodes[i].jumpNum);
-                    scribe.Write("\n");
+                    scribe.Write('\n');
                     //loop to handle reactions
                     //write owner for list of reactions
-                    scribe.Write(tbt.nodes[i].reactions[j].owner);
+                    bool check = false;
                     for (int j = 0; j< tbt.nodes[i].reactions.Count(); j++)
                     {
+                        //check to see if owner was initially printed
+                        if (!check)
+                        {
+                            scribe.WriteLine(tbt.nodes[i].reactions[j].owner);
+                            check = true;
+                        }
                         //write tab
-                        scribe.Write("/t");
+                        scribe.Write('\t');
                         scribe.Write(tbt.nodes[i].reactions[j].line);
-                        scribe.Write("\t");
-                        scribe.Write(tbt.nodes[i].reactions[j].jumpNum);
+                        scribe.Write('\t');
+                        scribe.Write("[" + tbt.nodes[i].reactions[j].jumpNum + "]");
+                        scribe.Write('\n');
                     }
 
 
