@@ -366,9 +366,15 @@ namespace Parser_Test
                     scribe.Write(tbt.nodes[i].jumpNum);
                     scribe.Write("\n");
                     //loop to handle reactions
-                    for(int j = 0; j< tbt.nodes[i].reactions.Count(); j++)
+                    //write owner for list of reactions
+                    scribe.Write(tbt.nodes[i].reactions[j].owner);
+                    for (int j = 0; j< tbt.nodes[i].reactions.Count(); j++)
                     {
-
+                        //write tab
+                        scribe.Write("/t");
+                        scribe.Write(tbt.nodes[i].reactions[j].line);
+                        scribe.Write("\t");
+                        scribe.Write(tbt.nodes[i].reactions[j].jumpNum);
                     }
 
 
