@@ -61,11 +61,29 @@ namespace Parser_Test
         }
     }
 
+
+    //structure for conversation flags
+    public struct flag
+    {
+        //data
+        public string name;
+        public bool active;
+
+        //constructor
+        public flag(string name, bool active)
+        {
+            this.name = name;
+            this.active = active;
+        }
+    }
+
     //structure that holds conditions for wheather a reply can be selected
-    public struct gate
+    public class gate
     {
         //tbd
         //likely will be some sort of check 'x' to see if it meets this requirement
+        //i.e. if intelligence > 12 display this reply
+        //or if flag for previous diaglogue is set display reply
     }
 
     //structure that holds the results that will occur once a reply is selected
@@ -73,6 +91,7 @@ namespace Parser_Test
     {
         //tbd
         //likely will be alter x by y amount
+        //will also include setting of flags
         //this struct may need to be rewritten and a class
         //not sure if functionality can be implemented without a function
     }
@@ -87,7 +106,7 @@ namespace Parser_Test
         {
             title = "undefined";
             actors = new List<string>();
-            
+            flags = new List<flag>();
             nodes = new List<node>();
         }
 
@@ -102,7 +121,7 @@ namespace Parser_Test
         //variables for conversation, flags for dialogue progression, etc
         // similar to conditions but these are booleans for line progress not for checking values 
         // probably needs encapuslated in a struct or class or merged with gates
-        public List<bool> flags;
+        public List<flag> flags;
 
         //currently selected node
         //used for creation and navigation
@@ -188,8 +207,9 @@ namespace Parser_Test
                                     break;
 
                                 case '#': // lines starting text inside  a set of # means the title for the script
-
-                                    result.title = segments[k];
+                                    end = characters.LastIndexOf('#');
+                                    tmp = characters.Substring(1, end - 1);
+                                    result.title = tmp;
                                     continue;
 
                                 case '|': // | is used to declare script participants
@@ -200,13 +220,12 @@ namespace Parser_Test
                                     result.actors.Add(tmp);
                                     break;
 
-                                case '<': // <> used to declare script variables
-                                    //bool generated = new bool();
+                                case '<': // <> used to declare script flags
+                                    
                                     end = characters.LastIndexOf('>');
                                     tmp = characters.Substring(1, end - 1);
-                                    //generated.name = tmp;
-
-                                    //result.gates.Add(generated);
+                                    flag tmpflag = new flag(tmp, false);
+                                    result.flags.Add(tmpflag);
                                     continue;
 
                                 case '[': // used to declare actions that should happen if this line is selected
@@ -338,11 +357,11 @@ namespace Parser_Test
 
                 //to be added at later date when gates and stuff implemented
                 //loop through variables in tree
-                //for (int i = 0; i < tbt.flags.Count(); i++)
-                //{
-                //    scribe.Write("<" + tbt.flags[i] + ">");
-                //    scribe.Write("\t");
-                //}
+                for (int i = 0; i < tbt.flags.Count(); i++)
+                {
+                    scribe.Write("<" + tbt.flags[i].name + ">");
+                    scribe.Write('\t');
+                }
                 //new line
                 scribe.Write('\n');
                 //loop through the actors in the tree
@@ -384,12 +403,10 @@ namespace Parser_Test
                         scribe.Write('\t');
                         scribe.Write("[" + tbt.nodes[i].reactions[j].jumpNum + "]");
                         scribe.Write('\n');
-                    }
-
-
-                    //end tag
-                    scribe.WriteLine("~");
+                    }                   
                 }
+                //end tag
+                scribe.WriteLine("~");
             }
         }
     }

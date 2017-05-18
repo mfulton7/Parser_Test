@@ -1,0 +1,22 @@
+#Test#
+<variable>	<arrested>	<fight>	
+|Player|	|Guard|	|Bartender|	
+~
+{1}
+Guard	"What's all this then?"	[0]
+Player
+	"Ummmm... nothing?"	[2]
+	"Can't you see I'm busy?"	[3]
+~
+{2}
+Guard	"Doesn't look like nothing to me."	[0]
+Player
+	"Well then you need to get your eyes checked mate."	[0]
+~
+{3}
+Guard	"It looks like you're busy stealing that sign."	[0]
+Player
+	"No, no, no, this is a simple misunderstanding, this sign belongs to me."	[0]
+	"I can see why you might think that being the simple guard that you are."	[0]
+	"You would be correct good sir."	[0]
+~
